@@ -15,15 +15,28 @@ export default function Gmate( props ) {
   const [seq, setSeq] = useState(0)
   const [soalAktif, setSoalAktif] = useState(soal[sekuen[0]])
   
+  useEffect(() => {
+    setSoalAktif(soal[sekuen[seq]])
+  }, [seq, setSoalAktif])
+  
+  function next(e) {
+    if (seq < sekuen.length) setSeq(seq + 1)
+  }
+  
   return (
     <div style={{ padding: '1rem', maxWidth: '900px', margin: '0 auto' }}>
-      <h1>GMATE</h1>
+      <h1>GMATE - {seq + 1} ({sekuen[seq] ? sekuen[seq] : 'Selesai'})</h1>
       {/* Check */}
       <p>Urutan {sekuen.length} soal = { sekuen.join(' ') }</p>
       {/* Check */}
-      <pre>{JSON.stringify(soalAktif, null, 2)}</pre>
+      <pre>{JSON.stringify([soalAktif.a, soalAktif.b, soalAktif.c, soalAktif.d, soalAktif.e], null, 2)}</pre>
       {/* <pre>{JSON.stringify(props.soalByKey, null, 2)}</pre> */}
-      <Soal soal={soalAktif} />
+      {seq < sekuen.length && <Soal soal={soalAktif} />}
+      <br/>
+      <button
+        style={{ padding: '1rem 2rem', fontSize: '1rem'  }}
+        onClick={next}
+      >Next</button>
     </div>
   )
 }
