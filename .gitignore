@@ -2,6 +2,7 @@
 
 gmate.db
 gmate.sql
+cli.log
 
 # dependencies
 /node_modules

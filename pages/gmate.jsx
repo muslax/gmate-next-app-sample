@@ -1,24 +1,29 @@
+import { useEffect, useState } from "react"
 import { 
   objectify, 
   getTestSequence,
   randomGroupKeys,
 } from "gmate"
 import connect from "../lib/database"
+import Soal from "../components/soal"
 
 
 export default function Gmate( props ) {
   const soal = props.soal
   const sekuen = props.sekuen
-  // const sekuenStr = sekuen
+  
+  const [seq, setSeq] = useState(0)
+  const [soalAktif, setSoalAktif] = useState(soal[sekuen[0]])
   
   return (
-    <div style={{ padding: '1rem', maxWidth: '900px' }}>
+    <div style={{ padding: '1rem', maxWidth: '900px', margin: '0 auto' }}>
       <h1>GMATE</h1>
       {/* Check */}
-      <p>{sekuen.length} || { sekuen.join(' ') }</p>
+      <p>Urutan {sekuen.length} soal = { sekuen.join(' ') }</p>
       {/* Check */}
-      <pre>{JSON.stringify(props.soal, null, 2)}</pre>
+      <pre>{JSON.stringify(soalAktif, null, 2)}</pre>
       {/* <pre>{JSON.stringify(props.soalByKey, null, 2)}</pre> */}
+      <Soal soal={soalAktif} />
     </div>
   )
 }
