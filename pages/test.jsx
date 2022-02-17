@@ -14,7 +14,7 @@ export default function Page() {
   const [seq, setSeq] = useState(0)
   
   function next(e) {
-    setSeq(seq == 44 ? 1 : seq +1)
+    setSeq(seq == 44 ? 0 : seq +1)
   }
   
   return (
