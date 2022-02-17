@@ -1,8 +1,6 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-gmate.sql
-gmate.xml
-cli.log
+gmate.db
 
 # dependencies
 /node_modules

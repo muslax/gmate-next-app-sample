@@ -1,0 +1,149 @@
+Last login: Sun Feb 13 11:45:16 on ttys001
+2022-02-15 22:48:43 mlx@~ > cd tmp
+2022-02-15 22:48:48 mlx@tmp > npx create-next-app@latest gmate-next-app
+Creating a new Next.js app in /Users/mlx/tmp/gmate-next-app.
+
+Using npm.
+
+Installing dependencies:
+- react
+- react-dom
+- next
+
+
+added 16 packages, and audited 17 packages in 5s
+
+2 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+
+Installing devDependencies:
+- eslint
+- eslint-config-next
+
+
+added 203 packages, and audited 220 packages in 18s
+
+63 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+
+Initialized a git repository.
+
+Success! Created gmate-next-app at /Users/mlx/tmp/gmate-next-app
+Inside that directory, you can run several commands:
+
+  npm run dev
+    Starts the development server.
+
+  npm run build
+    Builds the app for production.
+
+  npm start
+    Runs the built app in production mode.
+
+We suggest that you begin by typing:
+
+  cd gmate-next-app
+  npm run dev
+
+2022-02-15 22:49:54 mlx@tmp > code gmate-next-app 
+2022-02-15 22:50:08 mlx@tmp > # Create blank repo in Github
+2022-02-15 23:00:37 mlx@tmp > cd gmate-next-app 
+2022-02-15 23:01:09 mlx@gmate-next-app > # Create blank repo in Github
+2022-02-15 23:01:15 mlx@gmate-next-app > git init
+Reinitialized existing Git repository in /Users/mlx/tmp/gmate-next-app/.git/
+2022-02-15 23:01:26 mlx@gmate-next-app > git commit -m "First commeit"
+On branch main
+nothing to commit, working tree clean
+2022-02-15 23:01:52 mlx@gmate-next-app > git add .
+2022-02-15 23:02:14 mlx@gmate-next-app > git commit -m "First commit" 
+On branch main
+nothing to commit, working tree clean
+2022-02-15 23:02:25 mlx@gmate-next-app > git branch -M main
+2022-02-15 23:03:02 mlx@gmate-next-app > git remote add origin https://github.com/muslax/gmate-next-app-sample.git
+2022-02-15 23:03:12 mlx@gmate-next-app > git push -u origin main
+Username for 'https://github.com': muslax@gmail.com
+Password for 'https://muslax@gmail.com@github.com': 
+remote: Support for password authentication was removed on August 13, 2021. Please use a personal access token instead.
+remote: Please see https://github.blog/2020-12-15-token-authentication-requirements-for-git-operations/ for more information.
+fatal: Authentication failed for 'https://github.com/muslax/gmate-next-app-sample.git/'
+2022-02-15 23:04:00 mlx@gmate-next-app > 
+2022-02-15 23:07:57 mlx@gmate-next-app > npm i gmate sqlite sqlite3
+npm WARN deprecated har-validator@5.1.5: this library is no longer supported
+npm WARN deprecated uuid@3.4.0: Please upgrade  to version 7 or higher.  Older versions may use Math.random() in certain circumstances, which is known to be problematic.  See https://v8.dev/blog/math-random for details.
+npm WARN deprecated request@2.88.2: request has been deprecated, see https://github.com/request/request/issues/3142
+npm WARN deprecated node-pre-gyp@0.11.0: Please upgrade to @mapbox/node-pre-gyp: the non-scoped node-pre-gyp package is deprecated and only the @mapbox scoped package will recieve updates in the future
+npm WARN deprecated tar@2.2.2: This version of tar is no longer supported, and will not receive security updates. Please upgrade asap.
+
+added 109 packages, and audited 329 packages in 34s
+
+64 packages are looking for funding
+  run `npm fund` for details
+
+3 high severity vulnerabilities
+
+To address all issues, run:
+  npm audit fix
+
+Run `npm audit` for details.
+2022-02-15 23:08:55 mlx@gmate-next-app > touch gmate.sql
+2022-02-15 23:09:38 mlx@gmate-next-app > sqlite3 gmate.db
+SQLite version 3.36.0 2021-06-18 18:58:49
+Enter ".help" for usage hints.
+sqlite> .read gmate.sql
+sqlite> .schema
+CREATE TABLE meta (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    versi               TEXT NOT NULL UNIQUE,
+    deskripsi           TEXT,
+    kondisi             INTEGER,        -- jumlah kondisi
+    soal                INTEGER,        -- jumlah soal
+    leader              TEXT,           -- "S02 S05 S19 S20 S21"
+    kunci               TEXT,           -- "p1"
+    s1                  INTEGER,        -- jumlah kondisi dengan soal tunggal
+    s2                  INTEGER,        -- jumlah kondisi dengan soal 2
+    s3                  INTEGER,        -- jumlah kondisi dengan soal 3
+    s4                  INTEGER,        -- jumlah kondisi dengan soal 4
+    s5                  INTEGER,        -- jumlah kondisi dengan soal 5
+    waktu               INTEGER,
+    reviewer            TEXT,
+    tanggalReview       TEXT
+);
+CREATE TABLE sqlite_sequence(name,seq);
+CREATE TABLE kondisi (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    versi       TEXT REFERENCES meta(versi),
+    seq         TEXT,                   -- CHECK (sekuen > 0 sekuen < 27),
+    item        INTEGER DEFAULT 1,      -- jumlah item soal
+    konten TEXT NOT NULL,
+    UNIQUE (versi, seq)
+);
+CREATE TABLE soal (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    versi       TEXT REFERENCES meta(versi),
+    ref         TEXT REFERENCES kondisi(seq),
+    seq         TEXT NOT NULL,
+    faktor      TEXT,
+    konten      TEXT NOT NULL,
+    a           TEXT NOT NULL,
+    b           TEXT NOT NULL,
+    c           TEXT NOT NULL,
+    d           TEXT NOT NULL,
+    e           TEXT NOT NULL,
+    UNIQUE (versi, ref, seq)
+);
+sqlite> .exit
+2022-02-15 23:11:20 mlx@gmate-next-app > git add .
+2022-02-15 23:13:19 mlx@gmate-next-app > git commit -m "instal dep"
+[main 9761c72] instal dep
+ 3 files changed, 1967 insertions(+), 69 deletions(-)
+2022-02-15 23:13:49 mlx@gmate-next-app > mkdir lib
+2022-02-15 23:14:51 mlx@gmate-next-app > touch lib/database.js
+2022-02-15 23:15:04 mlx@gmate-next-app > touch pages/gmate.jsx
+2022-02-15 23:15:22 mlx@gmate-next-app > git branch g1
+2022-02-15 23:45:33 mlx@gmate-next-app > git checkout g1
+Switched to branch 'g1'
+2022-02-15 23:47:55 mlx@gmate-next-app > 
