@@ -15,7 +15,7 @@ export default function Soal({ soal }) {
         style={{ lineHeight: 1.6, margin: '0' }}
       />
       <ul style={{ listStyleType: 'upper-alpha' }}>
-        {pilihan.sort(() => Math.random() - 0.5).map(p => <li>{p.text}</li>)}
+        {pilihan.sort(() => Math.random() - 0.5).map(p => <li key={p.seq}>{p.text}</li>)}
       </ul>
       <style jsx>{`
         .soal {
